@@ -36,6 +36,8 @@ namespace API
             });
 
             services.AddControllers();
+            services.AddCors();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -55,6 +57,10 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //order is important - this middleware contains information.
+            // allow headers and methos with orign in client.
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseAuthorization();
 

@@ -60,7 +60,8 @@ namespace API
 
             //order is important - this middleware contains information.
             // allow headers and methos with orign in client.
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            app.UseCors(policy => policy.AllowAnyHeader().
+            AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseAuthorization();
 
